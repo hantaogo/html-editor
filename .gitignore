@@ -1,11 +1,21 @@
-# 开发依赖
-node_modules/
+.DS_Store
+node_modules
+/dist
 
-# 安装开发依赖时生成的文件
-package-lock.json
+# local env files
+.env.local
+.env.*.local
 
-# 编辑器配置
-.vscode/
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# 打包后的代码文件
-dist/bundle.js
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
