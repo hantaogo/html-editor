@@ -1,0 +1,29 @@
+{
+  "name": "HtmlEditor",
+  "version": "1.0.0",
+  "description": "a html editor",
+  "private": true,
+  "scripts": {
+    "build": "webpack",
+    "serve": "webpack-dev-server --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hantaogo/HtmlEditor.git"
+  },
+  "keywords": [
+    "html editor"
+  ],
+  "author": "Japple",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hantaogo/HtmlEditor/issues"
+  },
+  "homepage": "https://github.com/hantaogo/HtmlEditor#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
