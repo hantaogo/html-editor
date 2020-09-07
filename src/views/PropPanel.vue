@@ -36,7 +36,7 @@
           <p>间距：20px</p>
         </div>
       </a-collapse-panel>
-      <a-collapse-panel key="3" header="组件事件">
+      <a-collapse-panel key="4" header="组件事件">
         <div style="text-align:left">
           <p>数据改变：onDataChange</p>
         </div>
