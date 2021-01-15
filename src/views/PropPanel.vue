@@ -1,44 +1,26 @@
 <template>
   <div>
-    <a-collapse v-model="activeKey">
-      <a-collapse-panel key="1" header="节点属性">
-        <div style="text-align:left">
-          <p>名字：容器1</p>
-          <p>尺寸：200 X 100</p>
-          <p>水平对齐：左</p>
-          <p>垂直对齐：中心</p>
-          <p>水平间距：40px</p>
-          <p>垂直间距：20px</p>
-          <p>外边距：16 16px 16px 16px</p>
-          <p>内边距：16 16px 16px 16px</p>
+    <a-collapse :default-active-key="['nodeAttr', 'componentAttr']" :bordered="false">
+      <a-collapse-panel key="nodeAttr" header="节点属性" size="small">
+        <div v-if="currentNode">
+          <div class="attr-item" v-for="(attr, key) in currentNode.getAttrDescMap()" :key="key">
+            <div class="attr-name">{{ attr.label }}</div>
+            <div class="attr-value">
+              <a-input v-if="attr.type === 'input'" size="small" :value="currentNode.getAttrMap()[key]" @blur="event => handleNodeAttrChange(key, event.target.value)"></a-input>
+              <StyleEditor v-if="attr.type === 'style'" :value="currentNode.getAttrMap()[key]" @change="val => handleNodeAttrChange(key, val)"></StyleEditor>
+            </div>
+          </div>
         </div>
       </a-collapse-panel>
-      <a-collapse-panel key="2" header="节点事件">
-        <div style="text-align:left">
-          <p>增加：onAdd</p>
-          <p>删除：onDelete</p>
-          <p>显示：onShow</p>
-          <p>隐藏：onHide</p>
-          <p>尺寸改变：onResize</p>
-          <p>点击：onClick</p>
-          <p>鼠标经过：onMouseOver</p>
-          <p>鼠标移开：onMouseOut</p>
-          <p>鼠标按下：onMouseDown</p>
-          <p>鼠标抬起：onMouseUp</p>
-          <p>拖拽开始：onDragStart</p>
-          <p>拖拽结束：onDragEnd</p>
-        </div>
-      </a-collapse-panel>
-      <a-collapse-panel key="3" header="组件属性">
-        <div style="text-align:left">
-          <p>名字：横向盒子</p>
-          <p>对齐方式：左</p>
-          <p>间距：20px</p>
-        </div>
-      </a-collapse-panel>
-      <a-collapse-panel key="4" header="组件事件">
-        <div style="text-align:left">
-          <p>数据改变：onDataChange</p>
+      <a-collapse-panel key="componentAttr" header="组件属性">
+        <div v-if="currentNode">
+          <div class="attr-item" v-for="(attr, key) in currentNode.getComponentAttrDescMap()" :key="key">
+            <div class="attr-name">{{ attr.label }}</div>
+            <div class="attr-value">
+              <a-input v-if="attr.type === 'input'" size="small" :value="currentNode.getComponentAttrMap()[key]" @blur="event => handleComponentAttrChange(key, event.target.value)"></a-input>
+              <StyleEditor v-if="attr.type === 'style'" :value="currentNode.getComponentAttrMap()[key]" @change="val => handleComponentAttrChange(key, val)"></StyleEditor>
+            </div>
+          </div>
         </div>
       </a-collapse-panel>
     </a-collapse>
@@ -46,18 +28,40 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import StyleEditor from './StyleEditor'
+
 export default {
   name: 'PropPanel',
-  data() {
-    return {
-      text: `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`,
-      activeKey: ['1']
-    }
+  components: {
+    StyleEditor,
   },
-  watch: {
-    activeKey(key) {
-      console.log(key)
-    }
-  }
+  computed: {
+    ...mapState({
+      currentNode: state => state.editor.currentNode,
+    })
+  },
+  methods: {
+    handleNodeAttrChange(key, val) {
+      this.currentNode.setAttr(key, val)
+    },
+    handleComponentAttrChange(key, val) {
+      this.currentNode.setComponentAttr(key, val)
+    },
+  },
 };
 </script>
+
+<style lang="less" scoped>
+.attr-item {
+  margin-bottom: 12px;
+}
+.attr-name {
+  text-align: left;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+.attr-value {
+  font-size: 12px;
+}
+</style>

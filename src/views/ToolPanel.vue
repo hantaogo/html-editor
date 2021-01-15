@@ -1,31 +1,40 @@
 <template>
-  <div class="container">
-    <a-button type="primary" icon="cloud-download"></a-button>
-    <a-button type="primary" icon="cloud-upload"></a-button>
-    <a-button type="primary" icon="setting"></a-button>
-    <a-divider type="vertical" />
-    <a-button type="primary" icon="plus"></a-button>
-    <a-button type="primary" icon="delete"></a-button>
-    <a-divider type="vertical" />
-    <a-button type="primary" icon="undo"></a-button>
-    <a-button type="primary" icon="redo"></a-button>
-    <a-divider type="vertical" />
-    <a-button type="primary" icon="edit"></a-button>
-    <a-button type="primary" icon="drag"></a-button>
-    <a-divider type="vertical" />
-    <a-button type="primary" icon="zoom-in"></a-button>
-    <a-button type="primary" icon="zoom-out"></a-button>
-    <a-divider type="vertical" />
-    <a-button type="primary" icon="align-left"></a-button>
-    <a-button type="primary" icon="align-center"></a-button>
-    <a-button type="primary" icon="align-right"></a-button>
-    <a-divider type="vertical" />
-    <a-button type="primary" icon="vertical-align-top"></a-button>
-    <a-button type="primary" icon="vertical-align-middle"></a-button>
-    <a-button type="primary" icon="vertical-align-bottom"></a-button>
-    <a-divider type="vertical" />
-    <a-button type="primary" icon="lock"></a-button>
-    <a-button type="primary" icon="unlock"></a-button>
+  <div class="tool-panel">
+    <div class="icon-group">
+      <a-icon class="icon" type="cloud-download"/>
+      <a-icon class="icon" type="cloud-upload"/>
+      <a-icon class="icon" type="setting"/>
+    </div>
+    <div class="icon-group">
+      <a-icon class="icon" type="plus"/>
+      <a-icon class="icon" type="delete"/>
+    </div>
+    <div class="icon-group">
+      <a-icon class="icon" type="undo"/>
+      <a-icon class="icon" type="redo"/>
+    </div>
+    <div class="icon-group">
+      <a-icon class="icon" type="edit"/>
+      <a-icon class="icon" type="drag"/>
+    </div>
+    <div class="icon-group">
+      <a-icon class="icon" type="zoom-in"/>
+      <a-icon class="icon" type="zoom-out"/>
+    </div>
+    <div class="icon-group">
+      <a-icon class="icon" type="align-left"/>
+      <a-icon class="icon" type="align-center"/>
+      <a-icon class="icon" type="align-right"/>
+    </div>
+    <div class="icon-group">
+      <a-icon class="icon" type="vertical-align-top"/>
+      <a-icon class="icon" type="vertical-align-middle"/>
+      <a-icon class="icon" type="vertical-align-bottom"/>
+    </div>
+    <div class="icon-group">
+      <a-icon class="icon" type="lock"/>
+      <a-icon class="icon" type="unlock"/>
+    </div>
   </div>
 </template>
 
@@ -41,15 +50,18 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  .container {
-    display: flex;
-  }
-
-  .container > * {
-    margin: 8px;
-  }
-
-  .container > .ant-divider {
-    height: 32px;
-  }
+.tool-panel {
+  background-color: #dcdcdc;
+  margin: 8px;
+}
+.icon-group {
+  display: inline-block;
+  border: 2px dashed black;
+  margin: 8px;
+}
+.icon {
+  margin: 8px 8px;
+  cursor: pointer;
+  font-size: 24px;
+}
 </style>

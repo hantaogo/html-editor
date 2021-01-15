@@ -1,14 +1,12 @@
 <template>
   <div>
-    <a-collapse v-model="activeKey">
-      <a-collapse-panel v-for="item in $store.state.packages" :key="item.package" :header="item.name">
+    <a-collapse :default-active-key="['Base']" :bordered="false">
+      <a-collapse-panel v-for="item in pkgList" :key="item.pkg" :header="item.name">
         <div
-          v-for="comp in item.components"
-          :key="item.package + '-' + comp.type"
+          v-for="(comp, index) in item.components"
+          :key="index"
           class="button"
-          draggable="true"
-          @dragstart="onDragStart($event, comp.type)"
-          @dragend="onDragEnd"
+          @click="onClick(item.pkg + '/' + comp.type)"
         >{{ comp.name }}</div>
       </a-collapse-panel>
     </a-collapse>
@@ -16,29 +14,24 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'ComponentPanel',
-  data() {
-    return {
-      activeKey: []
-    }
-  },
-  mounted() {
+  computed: {
+    ...mapState({
+      pkgList: state => state.pkg.pkgList
+    })
   },
   methods: {
-    onDragStart(event, compType) {
-      console.log('ComponentPanel onDragStart', event)
-      event.dataTransfer.setData('application/component-add', compType)
+    onClick(path) {
+      this.$bus.emit('addComp', path)
     },
-    onDragEnd(event) {
-      console.log('ComponentPanel onDragEnd', event)
-    }
-  }
+  },
 };
 </script>
 
 <style lang="less" scoped>
-
 .button {
   width: 100%;
   height: 32px;
@@ -48,6 +41,6 @@ export default {
   border-radius: 6px;
   margin: 8px 0 ;
   background-color: white;
+  cursor: pointer;
 }
-
 </style>

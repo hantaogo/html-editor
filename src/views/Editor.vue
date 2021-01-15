@@ -1,26 +1,32 @@
 <template>
   <div class="container">
-    <div class="left">
-      <div class="node-panel-container">
-        <NodePanel />
-      </div>
-      <div class="conponent-panel-container">
-        <ComponentPanel />
-      </div>
-    </div>
-    <div class="center">
-      <div class="tool-panel-container">
-        <ToolPanel />
-      </div>
-      <div class="stage-panel-container">
-        <StagePanel />
-      </div>
-    </div>
-    <div class="right">
-      <div class="prop-panel">
-        <PropPanel />
-      </div>
-    </div>
+    <a-row>
+      <a-col :span="4">
+        <a-row>
+          <a-col :span="24">
+            <ComponentPanel/>
+          </a-col>
+          <a-col :span="24">
+            <NodePanel/>
+          </a-col>
+        </a-row>
+      </a-col>
+      <a-col :span="14">
+        <a-row>
+          <a-col :span="24">
+            <ToolPanel/>
+          </a-col>
+        </a-row>
+        <a-row>
+          <a-col :span="24">
+            <StagePanel/>
+          </a-col>
+        </a-row>
+      </a-col>
+      <a-col :span="6">
+        <PropPanel/>
+      </a-col>
+    </a-row>
   </div>
 </template>
 
@@ -40,10 +46,11 @@ export default {
     ToolPanel,
     StagePanel,
   },
-  data () {
+  data() {
     return {
+      mountedList: [],
     }
-  }
+  },
 }
 </script>
 
@@ -53,70 +60,8 @@ body {
   margin: 0;
   padding: 0;
 }
-
 .container {
   width: 100%;
   height: 100%;
-  vertical-align: top;
 }
-
-.left {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  width: 400px;
-  height: 100%;
-  border: 1px dashed black;
-  overflow: auto;
-}
-
-.center {
-  position: absolute;
-  left: 400px;
-  top: 0px;
-  width: calc(100% - 800px);
-  height: 100%;
-  overflow: hidden;
-}
-
-.right {
-  position: absolute;
-  right: 0px;
-  top: 0px;
-  width: 400px;
-  height: 100%;
-  border: 1px dashed black;
-  overflow: auto;
-}
-
-.node-panel-container {
-  width: 100%;
-  max-height: 50%;
-  border: 1px dashed black;
-}
-
-.component-panel-container {
-  width: 100%;
-  max-height: 50%;
-  border: 1px dashed black;
-}
-
-.tool-panel-container {
-  width: 100%;
-  height: 48px;
-  border: 1px dashed black;
-}
-
-.stage-panel-container {
-  width: 100%;
-  height: calc(100% - 48px);
-  border: 1px dashed black;
-}
-
-.prop-panel {
-  width: 100%;
-  height: 100%;
-  border: 1px dashed black;
-}
-
 </style>

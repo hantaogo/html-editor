@@ -1,17 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import packages from './packages'
+import editor from './editor'
+import pkg from './pkg'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
-    packages
-  },
-  mutations: {
-  },
-  actions: {
-  },
   modules: {
+    editor,
+    pkg,
   }
 })
